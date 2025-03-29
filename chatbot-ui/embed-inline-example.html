@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline Chat Widget Example</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .content { margin-bottom: 20px; }
+        #chat-embed-target {
+            /* border: 1px dashed #ccc; */ /* Removed border */
+            /* padding: 10px; */ /* Removed padding, let widget handle internal padding */
+            min-height: 25vh; /* Set minimum height to 25% of viewport height */
+            /* max-width: 440px; */ /* Removed max-width, let widget control its own max-width */
+            margin: 20px auto; /* Keep centering */
+            display: flex; /* Use flex to help center the widget if it has margin:auto */
+            justify-content: center; /* Center widget horizontally */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Inline Chat Demo</h1>
+
+    <div class="content">
+    </div>
+
+    <!-- This is the target element where the chat widget will be rendered -->
+    <div id="chat-embed-target">
+        <!-- The inline-chat-widget.js script will place the chat UI here -->
+    </div>
+    <!-- Widget Configuration -->
+    <script>
+        window.ChatWidgetConfig = {
+            // --- Inline Specific Config ---
+            targetElementSelector: '#chat-embed-target', // Tell the script where to render
+
+            // --- Standard Config (Copy from your index.html or adjust) ---
+            webhook: {
+                url: 'https://auto.aisalesagent.cloud/webhook/a889d2ae-2159-402f-b326-5f61e90f602e/chat', // Replace with your actual webhook URL
+                route: 'general' // Your specific route
+            },
+            branding: {
+                logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Replace with your logo URL
+                name: 'AI Sales Agent Cloud',
+                // welcomeText and responseTimeText are not used in the current inline flow, but kept for potential future use
+                welcomeText: 'Click here to begin',
+                responseTimeText: 'We typically respond right away (Test)'
+                // poweredBy is configured in the script's defaultConfig
+            },
+            style: {
+                primaryColor: '#854fff',
+                secondaryColor: '#6b3fd4',
+                // position is ignored in inline mode
+                // position: 'right',
+                backgroundColor: '#ffffff',
+                fontColor: '#333333'
+            }
+        };
+    </script>
+
+    <!-- Load the INLINE Widget Script -->
+    <script src="https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafkreido7fvvl7vl7h3vbtkqmeslvei5ib7mwzyn2dq6rbkbxo3umqsmxi"></script>
+
+</body>
+</html>
