@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Test Page</title>
+    <!-- You can add other meta tags or CSS links here if needed -->
+</head>
+<body>
+
+    <h1>My Test Website</h1>
+    <p>This page includes the N8n chatbot widget for testing.</p>
+
+    <!-- Widget Configuration -->
+    <script>
+        window.ChatWidgetConfig = {
+            webhook: {
+                url: 'https://auto.aisalesagent.cloud/webhook/a889d2ae-2159-402f-b326-5f61e90f602e/chat',
+                route: 'general' // Your specific route
+            },
+            branding: {
+                logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafkreibkgw7thabxlla75hogpgw3gxw6itbduib3vlvldkrrcwavauz4gq', // Replace with a valid image URL for testing
+                name: 'AI Sales Agent Cloud',
+                welcomeText: 'Click here to begin',
+                responseTimeText: 'We typically respond right away (Test)'
+            },
+            style: {
+                primaryColor: '#854fff',
+                secondaryColor: '#6b3fd4',
+                position: 'right', // 'left' or 'right'
+                backgroundColor: '#ffffff',
+                fontColor: '#333333'
+            }
+        };
+    </script>
+
+    <!-- Widget Script - Loads your chatbot UI code -->
+    <!-- Make sure this path is correct relative to index.html -->
+    <script src="chat-widget.js"></script>
+
+    <!-- Add more page content below if you like -->
+
+</body>
+</html>
