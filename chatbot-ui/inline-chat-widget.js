@@ -22,7 +22,7 @@
             flex-direction: column; /* Keep flex direction */
             /* width: 100%; */ /* Width is viewport-relative */
             min-width: 25vw; /* Minimum width 25% of viewport width */
-            /* max-width: 500px; */ /* Removed max-width constraint */
+            max-width: 50vw; /* Set max-width to 50% of viewport width */
             /* min-height: 500px; */ /* Removed min-height in pixels */
             height: 70vh; /* Height 70% of viewport height */
             background: var(--chat--color-background);
@@ -32,7 +32,7 @@
             border: 1px solid rgba(133, 79, 255, 0.2);
             overflow: hidden;
             font-family: inherit;
-            margin: 0 auto; /* Optional: Center if parent allows */
+            /* margin: 0 auto; */ /* Removed duplicate margin rule */
         }
 
         /* Removed .position-left and .open rules */
@@ -387,11 +387,7 @@
     // Modified chatInterfaceHTML to include initial prompt buttons
     const chatInterfaceHTML = `
         <div class="chat-interface">
-            <div class="brand-header">
-                <img src="${config.branding.logo}" alt="${config.branding.name}">
-                <span>${config.branding.name}</span>
-                <!-- Removed close button for inline version -->
-            </div>
+            <!-- Removed brand header for inline version -->
             <div class="initial-prompt">
                  <button class="lang-start-btn" data-lang="en">Start Chat</button>
                  <button class="lang-start-btn" data-lang="es">Iniciar Chat</button>
