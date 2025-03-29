@@ -20,19 +20,33 @@
             /* display: none; */
             display: flex; /* Should be visible by default */
             flex-direction: column; /* Keep flex direction */
-            /* width: 100%; */ /* Width is viewport-relative */
-            min-width: 25vw; /* Minimum width 25% of viewport width */
-            max-width: 50vw; /* Set max-width to 50% of viewport width */
+            width: 100vw; /* Default to full viewport width (mobile-first) */
+            /* min-width: 25vw; */ /* Moved to media query */
+            /* max-width: 50vw; */ /* Moved to media query */
             /* min-height: 500px; */ /* Removed min-height in pixels */
             height: 70vh; /* Height 70% of viewport height */
             background: var(--chat--color-background);
-            border-radius: 12px;
+            border-radius: 0; /* Remove radius for full width mobile */
             box-shadow: 0 8px 32px rgba(133, 79, 255, 0.15);
-            margin: auto; /* Center the widget within its container (if possible) */
-            border: 1px solid rgba(133, 79, 255, 0.2);
+            /* margin: auto; */ /* Remove margin for full width mobile */
+            border: none; /* Remove border for full width mobile */
+            border-top: 1px solid rgba(133, 79, 255, 0.2); /* Maybe keep top/bottom borders */
+            border-bottom: 1px solid rgba(133, 79, 255, 0.2);
             overflow: hidden;
             font-family: inherit;
             /* margin: 0 auto; */ /* Removed duplicate margin rule */
+        }
+
+        /* Styles for larger screens */
+        @media (min-width: 768px) {
+            .n8n-chat-widget .chat-container {
+                width: auto; /* Reset width */
+                min-width: 25vw;
+                max-width: 50vw;
+                margin: auto; /* Center on larger screens */
+                border-radius: 12px; /* Restore border-radius */
+                border: 1px solid rgba(133, 79, 255, 0.2); /* Restore full border */
+            }
         }
 
         /* Removed .position-left and .open rules */
