@@ -92,7 +92,6 @@
             padding: 20px;
             text-align: center;
             width: 100%;
-            max-width: 300px;
         }
 
         .n8n-chat-widget .welcome-text {
