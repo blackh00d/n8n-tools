@@ -14,15 +14,28 @@
         .n8n-inline-chat-widget .inline-chat-container { /* Namespaced */
             display: flex;
             flex-direction: column;
-            min-width: 25vw; /* Minimum width 25% of viewport width */
+            /* min-width: 25vw; */ /* Removed min-width */
+            width: 100vw; /* Default width for mobile */
             height: 70vh; /* Height 70% of viewport height */
             background: var(--chat--color-background);
-            border-radius: 12px;
+            border-radius: 12px; /* Keep rounded corners */
             box-shadow: 0 8px 32px rgba(133, 79, 255, 0.15);
             margin: auto; /* Center the widget within its container (if possible) */
             border: 1px solid rgba(133, 79, 255, 0.2);
             overflow: hidden;
             font-family: inherit;
+            box-sizing: border-box; /* Include padding/border in width/height */
+        }
+
+        /* Media Query for larger screens */
+        @media (min-width: 768px) { /* Adjust breakpoint as needed */
+            .n8n-inline-chat-widget .inline-chat-container {
+                width: 50vw; /* Width for desktop */
+                max-width: 600px; /* Optional: Max width for very large screens */
+                /* Keep height at 70vh or adjust if needed */
+                border-radius: 12px; /* Ensure border-radius is kept */
+                /* Margin auto should still work for centering */
+            }
         }
         /* Removed position/open rules */
 
