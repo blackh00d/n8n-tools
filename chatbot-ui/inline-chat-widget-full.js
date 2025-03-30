@@ -21,7 +21,7 @@
             display: flex; /* Should be visible by default */
             flex-direction: column; /* Keep flex direction */
             /* width: 100%; */ /* Width is viewport-relative */
-            min-width: 25vw; /* Minimum width 25% of viewport width */
+            min-width: 50vw; /* Minimum width 50% of viewport width */
             /* max-width: 500px; */ /* Removed max-width constraint */
             /* min-height: 500px; */ /* Removed min-height in pixels */
             height: 70vh; /* Height 70% of viewport height */
