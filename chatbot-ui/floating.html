@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Test Page</title>
+    <!-- You can add other meta tags or CSS links here if needed -->
+</head>
+<body>
+
+    <h1>Chat Demo</h1>
+    <!-- Widget Configuration -->
+    <script>
+        window.FloatingChatWidgetConfig = { // Changed name
+            webhook: {
+                url: 'https://auto.aisalesagent.cloud/webhook/f7c75efb-b3ad-4673-9dfb-dd5a9bf4d046/chat',
+                route: 'general' // Your specific route
+            },
+            branding: {
+                logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Replace with a valid image URL for testing
+                name: 'AI Sales Agent Cloud',
+            },
+            style: {
+                primaryColor: '#854fff',
+                secondaryColor: '#6b3fd4',
+                position: 'right', // 'left' or 'right'
+                backgroundColor: '#ffffff',
+                fontColor: '#333333'
+            }
+        };
+    </script>
+    <script src="floating-widget.js"></script>
+
+    <!-- Add more page content below if you like -->
+
+</body>
+</html>

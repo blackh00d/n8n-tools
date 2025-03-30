@@ -3,35 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Test Page</title>
-    <!-- You can add other meta tags or CSS links here if needed -->
+    <title>Chatbot Test Page (Both Widgets)</title>
+    <style>
+        /* Basic styling for the inline container */
+        #inline-chat-target {
+            /* border: 1px dashed #ddd; */ /* Removed border */
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 520px; /* Adjust as needed */
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Chat Demo</h1>
-    <!-- Widget Configuration -->
+    <h1>Chat Demo (Both Widgets)</h1>
+    <p>This page loads both the floating chat bubble and an inline chat widget below.</p>
+
+    <!-- Target Element for Inline Widget -->
+    <div id="inline-chat-target">
+        <!-- Inline chat will render here -->
+    </div>
+
+    <p>Some content below the inline chat.</p>
+
+    <!-- Widget Configurations -->
     <script>
-        window.FloatingChatWidgetConfig = { // Changed name
+        // --- Configuration for FLOATING Widget ---
+        window.FloatingChatWidgetConfig = {
             webhook: {
-                url: 'https://auto.aisalesagent.cloud/webhook/f7c75efb-b3ad-4673-9dfb-dd5a9bf4d046/chat',
-                route: 'general' // Your specific route
+                url: 'https://auto.aisalesagent.cloud/webhook/f7c75efb-b3ad-4673-9dfb-dd5a9bf4d046/chat', // Use your actual URL
+                route: 'general'
             },
             branding: {
-                logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Replace with a valid image URL for testing
-                name: 'AI Sales Agent Cloud',
+                logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Use your actual URL
+                name: 'Floating Chat Test', // Distinguish name for testing
             },
             style: {
                 primaryColor: '#854fff',
                 secondaryColor: '#6b3fd4',
-                position: 'right', // 'left' or 'right'
+                position: 'right',
                 backgroundColor: '#ffffff',
                 fontColor: '#333333'
             }
         };
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/blackh00d/n8n-tools@refs/heads/main/chatbot-ui/chat-widget.js"></script>
 
-    <!-- Add more page content below if you like -->
+        // --- Configuration for INLINE Widget ---
+        window.InlineChatWidgetConfig = {
+            // Required: Selector for the target div
+            targetElementSelector: '#inline-chat-target',
+
+            // Use same backend/branding for testing simplicity, adjust as needed
+            webhook: {
+                url: 'https://auto.aisalesagent.cloud/webhook/f7c75efb-b3ad-4673-9dfb-dd5a9bf4d046/chat', // Use your actual URL
+                route: 'general'
+            },
+            branding: {
+                logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Use your actual URL
+                name: 'Inline Chat Test', // Distinguish name for testing
+                // poweredBy is configured in the script's defaultConfig
+            },
+            style: {
+                primaryColor: '#3498db', // Use different colors for easy visual distinction
+                secondaryColor: '#2980b9',
+                backgroundColor: '#ffffff',
+                fontColor: '#111111'
+                // position is ignored
+            }
+        };
+    </script>
+
+    <!-- Load BOTH Widget Scripts -->
+    <script src="floating-widget.js"></script>
+    <script src="inline-widget.js"></script>
 
 </body>
 </html>
