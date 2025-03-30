@@ -351,8 +351,8 @@
         // --- End Inline Modifications ---
     };
 
-    // Merge user config with defaults
-    const userConfig = window.ChatWidgetConfig || {};
+    // Merge user config with defaults - Use InlineChatWidgetConfig
+    const userConfig = window.InlineChatWidgetConfig || {}; // Changed name
     const config = {
         webhook: { ...defaultConfig.webhook, ...userConfig.webhook },
         branding: { ...defaultConfig.branding, ...userConfig.branding },
@@ -362,9 +362,9 @@
         // --- End Inline Modifications ---
     };
 
-    // Prevent multiple initializations
-    if (window.N8NChatWidgetInitialized) return;
-    window.N8NChatWidgetInitialized = true;
+    // Prevent multiple initializations - Use N8NInlineChatWidgetInitialized
+    if (window.N8NInlineChatWidgetInitialized) return; // Changed name
+    window.N8NInlineChatWidgetInitialized = true; // Changed name
 
     let currentSessionId = '';
 

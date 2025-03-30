@@ -31,7 +31,7 @@
     </div>
     <!-- Widget Configuration -->
     <script>
-        window.ChatWidgetConfig = {
+        window.InlineChatWidgetConfig = { // Changed name
             // --- Inline Specific Config ---
             targetElementSelector: '#chat-embed-target', // Tell the script where to render
 
@@ -43,9 +43,6 @@
             branding: {
                 logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Replace with your logo URL
                 name: 'AI Sales Agent Cloud',
-                // welcomeText and responseTimeText are not used in the current inline flow, but kept for potential future use
-                welcomeText: 'Click here to begin',
-                responseTimeText: 'We typically respond right away (Test)'
                 // poweredBy is configured in the script's defaultConfig
             },
             style: {
@@ -58,9 +55,7 @@
             }
         };
     </script>
-
-    <!-- Load the INLINE Widget Script -->
-    <script src="inline-chat-widget-full.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/blackh00d/n8n-tools@refs/heads/main/chatbot-ui/inline-chat-widget-full.js"></script>
 
 </body>
 </html>

@@ -11,7 +11,7 @@
     <h1>Chat Demo</h1>
     <!-- Widget Configuration -->
     <script>
-        window.ChatWidgetConfig = {
+        window.FloatingChatWidgetConfig = { // Changed name
             webhook: {
                 url: 'https://auto.aisalesagent.cloud/webhook/f7c75efb-b3ad-4673-9dfb-dd5a9bf4d046/chat',
                 route: 'general' // Your specific route
@@ -19,8 +19,6 @@
             branding: {
                 logo: 'https://brown-mad-magpie-543.mypinata.cloud/ipfs/bafybeia2wgkje5emfhc3dl44wnoi7rw5j2bd6tm4araxokek2bv4kaz3te', // Replace with a valid image URL for testing
                 name: 'AI Sales Agent Cloud',
-                welcomeText: 'Click here to begin',
-                responseTimeText: 'We typically respond right away (Test)'
             },
             style: {
                 primaryColor: '#854fff',
@@ -31,9 +29,6 @@
             }
         };
     </script>
-
-    <!-- Widget Script - Loads your chatbot UI code -->
-    <!-- Make sure this path is correct relative to index.html -->
     <script src="https://cdn.jsdelivr.net/gh/blackh00d/n8n-tools@refs/heads/main/chatbot-ui/chat-widget.js"></script>
 
     <!-- Add more page content below if you like -->

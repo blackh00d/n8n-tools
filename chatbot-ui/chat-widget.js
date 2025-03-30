@@ -371,17 +371,17 @@
         }
     };
 
-    // Merge user config with defaults
-    const config = window.ChatWidgetConfig ? 
-        {
-            webhook: { ...defaultConfig.webhook, ...window.ChatWidgetConfig.webhook },
-            branding: { ...defaultConfig.branding, ...window.ChatWidgetConfig.branding },
-            style: { ...defaultConfig.style, ...window.ChatWidgetConfig.style }
-        } : defaultConfig;
+    // Merge user config with defaults - Use FloatingChatWidgetConfig
+    const userConfig = window.FloatingChatWidgetConfig || {}; // Changed name
+    const config = {
+        webhook: { ...defaultConfig.webhook, ...userConfig.webhook },
+        branding: { ...defaultConfig.branding, ...userConfig.branding },
+        style: { ...defaultConfig.style, ...userConfig.style }
+    };
 
-    // Prevent multiple initializations
-    if (window.N8NChatWidgetInitialized) return;
-    window.N8NChatWidgetInitialized = true;
+    // Prevent multiple initializations - Use N8NFloatingChatWidgetInitialized
+    if (window.N8NFloatingChatWidgetInitialized) return; // Changed name
+    window.N8NFloatingChatWidgetInitialized = true; // Changed name
 
     let currentSessionId = '';
 
