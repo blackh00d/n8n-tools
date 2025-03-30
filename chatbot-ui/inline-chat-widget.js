@@ -20,25 +20,20 @@
             /* display: none; */
             display: flex; /* Should be visible by default */
             flex-direction: column; /* Keep flex direction */
-            width: 100vw; /* Default to full viewport width (mobile-first) */
-            /* min-width: 25vw; */ /* Moved to media query */
-            /* max-width: 50vw; */ /* Moved to media query */
+            /* width: 100%; */ /* Width is viewport-relative */
+            min-width: 25vw; /* Minimum width 25% of viewport width */
+            /* max-width: 500px; */ /* Removed max-width constraint */
             /* min-height: 500px; */ /* Removed min-height in pixels */
             height: 70vh; /* Height 70% of viewport height */
             background: var(--chat--color-background);
-            border-radius: 0; /* Remove radius for full width mobile */
+            border-radius: 12px;
             box-shadow: 0 8px 32px rgba(133, 79, 255, 0.15);
-            /* margin: auto; */ /* Remove margin for full width mobile */
-            border: none; /* Remove border for full width mobile */
-            border-top: 1px solid rgba(133, 79, 255, 0.2); /* Maybe keep top/bottom borders */
-            border-bottom: 1px solid rgba(133, 79, 255, 0.2);
+            margin: auto; /* Center the widget within its container (if possible) */
+            border: 1px solid rgba(133, 79, 255, 0.2);
             overflow: hidden;
             font-family: inherit;
-            /* margin: 0 auto; */ /* Removed duplicate margin rule */
+            margin: 0 auto; /* Optional: Center if parent allows */
         }
-
-        /* Removed media query block to apply base styles to all screen sizes */
-        /* @media (min-width: 768px) { ... } */
 
         /* Removed .position-left and .open rules */
         /* .n8n-chat-widget .chat-container.position-left { ... } */
