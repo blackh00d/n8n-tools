@@ -42,7 +42,7 @@
             .n8n-chat-widget .chat-container {
                 width: auto; /* Reset width */
                 min-width: 25vw;
-                max-width: 50vw;
+                /* max-width: 50vw; */ /* Removed max-width constraint */
                 margin: auto; /* Center on larger screens */
                 border-radius: 12px; /* Restore border-radius */
                 border: 1px solid rgba(133, 79, 255, 0.2); /* Restore full border */
