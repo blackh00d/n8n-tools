@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# Script to install and configure n8n on Debian/Ubuntu systems.
+# Script to install and configure n8n on Debian/Ubuntu systems using nvm.
 # Runs n8n service as a dedicated 'n8n' user.
 # Checks for existing installation, offers uninstall, and handles ufw firewall.
 
@@ -63,14 +63,41 @@ check_packages() {
 
   install_if_missing "build-essential" "command -v build-essential"
   install_if_missing "python3" "command -v python3"
-  install_if_missing "nodejs" "command -v nodejs"
-  install_if_missing "npm" "command -v npm"
+}
+
+# Install nvm (Node Version Manager)
+install_nvm() {
+  if command -v nvm > /dev/null; then
+    echo "nvm is already installed."
+    return
+  fi
+
+  log "Installing nvm..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  source ~/.nvm/nvm.sh # Load nvm into the current shell
+  log "nvm installed."
+}
+
+# Install Node.js using nvm
+install_nodejs() {
+  NVM_NODE_VERSION="v22" # Or "v22.x" for the latest v22
+  if nvm ls | grep "$NVM_NODE_VERSION" > /dev/null; then
+    echo "Node.js $NVM_NODE_VERSION is already installed via nvm."
+    return
+  fi
+
+  log "Installing Node.js $NVM_NODE_VERSION via nvm..."
+  nvm install "$NVM_NODE_VERSION"
+  nvm use "$NVM_NODE_VERSION"
+  log "Node.js $NVM_NODE_VERSION installed."
 }
 
 # Check if n8n is already installed
 is_n8n_installed() {
+  # Source nvm to make n8n command available
+  source ~/.nvm/nvm.sh
   n8n --version > /dev/null 2>&1
-  return $? # Return the exit status of the command
+  return $?
 }
 
 # Check if the n8n systemd service file exists
@@ -81,10 +108,11 @@ is_service_installed() {
 # Uninstall n8n and remove the service
 uninstall_n8n() {
   echo "Uninstalling n8n..."
-  sudo systemctl stop n8n || true  # Ignore errors if it's not running
-  sudo systemctl disable n8n || true # Ignore errors if it's not enabled
+  sudo systemctl stop n8n || true
+  sudo systemctl disable n8n || true
   sudo rm -f /etc/systemd/system/n8n.service
-  sudo npm uninstall -g n8n || true #Ignore errors if it wasn't installed
+  sudo rm -rf /opt/n8n
+  sudo npm uninstall -g n8n || true
 
   #Remove user.
   sudo userdel n8n || true
@@ -98,7 +126,9 @@ uninstall_n8n() {
 # Install n8n globally
 install_n8n() {
   echo "Installing n8n globally..."
-  execute_command "npm install -g n8n"
+  # Source nvm to make npm available
+  source ~/.nvm/nvm.sh
+  npm install -g n8n
 }
 
 # Check if the n8n user exists; create if it doesn't
@@ -106,12 +136,11 @@ create_n8n_user() {
     id -u n8n >/dev/null 2>&1
     if [[ $? -ne 0 ]]; then
         echo "Creating n8n user..."
-        sudo useradd -r -M -s /usr/sbin/nologin n8n # Create a system user without a home directory or login
+        sudo useradd -r -M -s /usr/sbin/nologin n8n
     else
         echo "n8n user already exists."
     fi
 }
-
 
 # Configure the systemd service
 configure_systemd_service() {
@@ -133,7 +162,8 @@ After=network.target
 [Service]
 Type=simple
 User=n8n
-ExecStart=/usr/local/bin/n8n $n8n_args
+Environment="NVM_DIR=/root/.nvm"
+ExecStart=/bin/bash -c "source \$NVM_DIR/nvm.sh && nvm use v22 && /usr/local/bin/n8n $n8n_args"
 Restart=on-failure
 
 [Install]
@@ -193,6 +223,8 @@ main() {
   if ! is_n8n_installed || ! is_service_installed; then
     update_upgrade
     check_packages
+    install_nvm
+    install_nodejs
     create_n8n_user
     install_n8n
     configure_systemd_service
